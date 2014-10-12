@@ -1,0 +1,16 @@
+{
+  "name": "colint",
+  "description": "Collective intelligence functions",
+  "author": "Aubrey Keus <aekeus@keus.org>",
+  "dependencies": {
+		"optimist": "*"
+  },
+  "devDependencies": {
+    "coffee-script": "*",
+		"tap": "*"
+  },
+  "engine": "node >= 10.0.*",
+  "scripts": {
+    "test": "tap ./test"
+  }
+}
