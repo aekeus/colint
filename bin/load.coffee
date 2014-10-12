@@ -10,11 +10,16 @@ for line in lines
   line[0] = line[0].trim()
   line[1] = line[1].trim().toLowerCase()
 
-c = new classify.Classifier classify.splitters.simple
-nb = new classify.NaiveBayes c
+#nb = new classify.NaiveBayes classify.splitters.simple, false
+
+#for line in lines
+#  nb.train line[0], line[1]
+
+#console.log nb.classifications argv.document
+
+nb = new classify.Fisher classify.splitters.simple, false
 
 for line in lines
-  c.train line[0], line[1]
+  nb.train line[0], line[1]
 
 console.log nb.classifications argv.document
-
