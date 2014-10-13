@@ -7,6 +7,8 @@ Collective intelligence library
 colint defines a set of classes and functions useful for collective intelligence /
 artificial intelligence tasks. (classification, regression, estimation etc...)
 
+This repository was inspired by the book Collective Intelligence by Toby Segaran 2007.
+
 # example
 
 ```
