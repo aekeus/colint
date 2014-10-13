@@ -17,7 +17,7 @@ for line in lines
 
 #console.log nb.classifications argv.document
 
-nb = new classify.Fisher classify.splitters.simple, false
+nb = new classify.Fisher classify.splitters.simple, { remove_stop_words: false }
 
 for line in lines
   nb.train line[0], line[1]

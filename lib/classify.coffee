@@ -1,3 +1,5 @@
+# Refer to chapter 6, Collective Intelligence, Toby Segaran 2007
+
 fs = require 'fs'
 
 stop_words = ['a','able','about','across','after','all','almost','also','am','among','an','and','any','are','as','at','be','because','been','but','by','can','cannot','could','dear','did','do','does','either','else','ever','every','for','from','get','got','had','has','have','he','her','hers','him','his','how','however','i','if','in','into','is','it','its','just','least','let','like','likely','may','me','might','most','must','my','neither','no','nor','not','of','off','often','on','only','or','other','our','own','rather','said','say','says','she','should','since','so','some','than','that','the','their','them','then','there','these','they','this','tis','to','too','twas','us','wants','was','we','were','what','when','where','which','while','who','whom','why','will','with','would','yet','you','your']
@@ -16,12 +18,14 @@ normf = (obj) ->
   r
 
 splitters =
-  simple: (doc, remove_stop_words=false) ->
+  simple: (doc, opts={}) ->
+    throw "opts must be an 'object' not '#{typeof opts}'" unless typeof opts is 'object'
+    opts.remove_stop_words or= false
     t = {}
     tokens = doc.split /\W+/g
     t[token.toLowerCase()] = true for token in tokens
     tokens = (k for k, v of t)
-    if remove_stop_words
+    if opts.remove_stop_words
       tokens = (t for t in tokens when stop_words.indexOf(t) is -1)
     tokens
 
@@ -30,7 +34,7 @@ class Classifier
   # constructor(Function, Boolean) -> Void
   #
   # Build a classifier object
-  constructor: (@splitter, @remove_stop_words=false) ->
+  constructor: (@splitter, @splitter_opts={}) ->
     @fc = {}
     @cc = {}
 
@@ -74,7 +78,7 @@ class Classifier
   categories: -> (k for k, v of @cc)
 
   train: (doc, category) ->
-    @incf(feature, category) for feature in @splitter(doc, @remove_stop_words)
+    @incf(feature, category) for feature in @splitter(doc, @splitter_opts)
     @incc(category)
 
   prob_feature_in_category: (feature, category) ->
@@ -99,9 +103,7 @@ class Classifier
   # 
   classifications: (document) ->
     cats = {}
-    for category in @categories()
-      cats[category] = @probability document, category
-    cats
+    cats[category] = @probability(document, category) for category in @categories()
 
     top = 0
     top_category = null
@@ -133,13 +135,11 @@ class Fisher extends Classifier
   # Calculates the probability that a document is in a category (Fisher)
   # 
   probability: (document, category) ->
-    features = @splitter document, @remove_stop_words
+    features = @splitter document, @splitter_opts
     p = 1
     for feature in features
       p *= @weighted_probability feature, category
-
     fscore = Math.log(p) * -2
-
     @invchi2 fscore, features.length * 2
     
   invchi2: (fscore, l) ->
@@ -153,7 +153,7 @@ class Fisher extends Classifier
 class NaiveBayes extends Classifier
 
   document_probability: (document, category) ->
-    features = @splitter document, @remove_stop_words
+    features = @splitter document, @splitter_opts
     p = 1
     for feature in features
       p *= @weighted_probability feature, category, 1, 0.01

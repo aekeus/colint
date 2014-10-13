@@ -7,7 +7,7 @@ test "simple splitter", (t) ->
 
   t.deepEqual results, ['came', 'conquered', 'i', 'saw'], "keep stop words"
 
-  results = classify.splitters.simple "I came, I saw, I conquered", true
+  results = classify.splitters.simple "I came, I saw, I conquered", { remove_stop_words: true }
   results.sort()
 
   t.deepEqual results, ['came', 'conquered', 'saw'], "remove stop words"
