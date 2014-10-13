@@ -40,8 +40,8 @@ class Classifier
 
   # incf() -> Void
   #
-  # Increment the number of times a feature apeared in a document
-  # in a category
+  # Increment the number of times a feature appears in a document
+  # within a category
   incf: (feature, category) ->
     if not @fc?[feature]
       @fc[feature] = {}
@@ -51,7 +51,7 @@ class Classifier
 
   # incc() -> Void
   #
-  # Increment the document count in a category
+  # Increment the document count within a category
   incc: (category) ->
     if not @cc[category]
       @cc[category] = 0
@@ -77,16 +77,27 @@ class Classifier
   # Array of categories seen so far
   categories: -> (k for k, v of @cc)
 
+  # train(String, String) -> void
+  #
+  # add a document within a category to the training set
   train: (doc, category) ->
     @incf(feature, category) for feature in @splitter(doc, @splitter_opts)
     @incc(category)
 
+  # prob_feature_in_category(String, String) ->Float
+  #
+  # probability of a feature appearings in a category
   prob_feature_in_category: (feature, category) ->
     if not @cc?[category]
       0
     else
       @feature_count(feature, category) / @category_count(category)
 
+  # weighted_probability(String, String, Float, Float) -> Float
+  #
+  # probability of a feature appearing in a category starting
+  # with an unknown probability (0.5) and moving towards 0 or 1
+  # based on whether it is included or not
   weighted_probability: (feature, category, weight=1.0, ap=0.5) ->
     basic = @prob_feature_in_category feature, category
     totals = sum (@feature_count(feature, c) for c in @categories())
@@ -100,17 +111,17 @@ class Classifier
   # [ 'top_category',
   #   [ [ 'top_category', 0.95 ]
   #     [ 'next_category', 0.002 ] ] ]
-  # 
+  #
   classifications: (document) ->
     cats = {}
     cats[category] = @probability(document, category) for category in @categories()
 
     top = 0
     top_category = null
-    for k, v of cats
-      if v > top
-        top_category = k
-        top = v
+    for category, score of cats
+      if score > top
+        top_category = category
+        top = score
 
     [top_category, normf(cats)]
 
@@ -179,7 +190,7 @@ class FilePersist
   load: (filename) ->
     obj = JSON.parse fs.readFileSync filename, 'utf-8'
     @classifier.fc = obj.fc
-    @classifier.cc = obj.cc    
+    @classifier.cc = obj.cc
 
 exports.Classifier = Classifier
 exports.NaiveBayes = NaiveBayes
