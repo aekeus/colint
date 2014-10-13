@@ -13,7 +13,7 @@ normf = (obj) ->
   s = sum (v for k,v of obj)
   r = []
   for k, v of obj
-    r.push [k, parseInt(v / s * 1000) / 1000] if v isnt 0
+    r.push [k, parseInt(v / s * 1000) / 1000] if v > 0.0001
   r.sort (a, b) -> b[1] - a[1]
   r
 
