@@ -14,8 +14,10 @@ This repository was inspired by the book Collective Intelligence by Toby Segaran
 ```
 colint = require 'colint'
 
+classify = colint.classify
+
 # create a NaiveBayes classifier with a simple token splitter
-nb = new colint.classify.NaiveBayes(coilint.classify.simple)
+nb = new classify.NaiveBayes(classify.splitters.simple)
 
 nb.train "This is the text of some document", "category"
 
