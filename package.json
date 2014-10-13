@@ -1,14 +1,29 @@
 {
   "name": "colint",
-  "description": "Collective intelligence functions",
+	"version": "1.0.0",
+  "description": "Collective intelligence library",
   "author": "Aubrey Keus <aekeus@keus.org>",
+  "homepage": "https://github.com/aekeus/colint",
+  "bugs": "https://github.com/aekeus/verdb/colint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aekeus/colint.git"
+  },
   "dependencies": {
+    "coffee-script": "*",
 		"optimist": "*"
   },
   "devDependencies": {
-    "coffee-script": "*",
 		"tap": "*"
   },
+	"keywords": [
+    "artificial intelligence",
+	  "collective intelligence",
+		"bayes",
+    "classification",
+    "regression",
+		"recommendation"
+  ],
   "engine": "node >= 10.0.*",
   "scripts": {
     "test": "tap ./test"
