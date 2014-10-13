@@ -24,7 +24,7 @@ nb.train "This is the text of some document", "category"
 [top_category, stats] = nb.classifications "Document to classify"
 ```
 
-see /examples folder for a working classification example
+see /examples folder for a working classification and recommendation example
 
 # install
 

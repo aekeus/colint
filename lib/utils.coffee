@@ -1,3 +1,8 @@
+exports.sum = (lst) ->
+  s = 0
+  s += v for v in lst
+  s
+
 exports.tanimoto = (lst1, lst2) ->
   intersection = (x for x in lst1 when lst2.indexOf(x) isnt -1)
   intersection.length / (lst1.length + lst2.length - intersection.length)
