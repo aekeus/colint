@@ -57,7 +57,7 @@ class Recommender
     sim_sums = {}
     for other_id, _ of @people when other_id isnt person_id
       sim = @pearson(person_id, other_id)
-      if sim > 0
+      if sim >= 0
         for item_id, _ of @ratings[other_id]
           if not @ratings[person_id]?[item_id]
             totals[item_id] = 0 if not totals?[item_id]
