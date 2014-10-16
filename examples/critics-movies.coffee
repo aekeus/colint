@@ -2,146 +2,97 @@
 
 Recommender = require('../lib/recommend').Recommender
 
+#  id: 1
+#  name: "Lisa Rose"
+#
+#  id: 2
+#  name: "Gene Seymour"
+#
+#  id: 3
+#  name: "Michael Phillips"
+#
+#  id: 4
+#  name: "Claudia Puig"
+#
+#  id: 5
+#  name: "Mick LaSalle"
+#
+#  id: 6
+#  name: "Jack Matthews"
+#
+#  id: 7
+#  name: "Toby"
+
+#  id: 100
+#  name: "Lady in the Water"
+#
+#  id: 101
+#  name: "Snakes on a Plane"
+#
+#  id: 102
+#  name: "Just My Luck"
+#
+#  id: 103
+#  name: "Superman Returns"
+#
+#  id: 104
+#  name: "You, Me and Dupree"
+#
+#  id: 105
+#  name: "The Night Listener"
+
 r = new Recommender()
 
-r.add_person
-  id: 1
-  name: "Lisa Rose"
-  
-r.add_person
-  id: 2
-  name: "Gene Seymour"
-        
-r.add_person
-  id: 3
-  name: "Michael Phillips"
+r.add_rating 1, 100, 2.5
+r.add_rating 1, 101, 3.5
+r.add_rating 1, 102, 3.0
+r.add_rating 1, 103, 3.5
+r.add_rating 1, 104, 2.5
+r.add_rating 1, 105, 3.0
 
-r.add_person
-  id: 4
-  name: "Claudia Puig"
+r.add_rating 2, 100, 3.0
+r.add_rating 2, 101, 3.5
+r.add_rating 2, 102, 1.5
+r.add_rating 2, 103, 5.0
+r.add_rating 2, 104, 3.5
+r.add_rating 2, 105, 3.0
 
-r.add_person
-  id: 5
-  name: "Mick LaSalle"
+r.add_rating 3, 100, 2.5
+r.add_rating 3, 101, 3.0
+r.add_rating 3, 103, 3.5
+r.add_rating 3, 105, 4.0
 
-r.add_person
-  id: 6
-  name: "Jack Matthews"
+r.add_rating 4, 101, 3.5
+r.add_rating 4, 102, 3.0
+r.add_rating 4, 105, 4.5
+r.add_rating 4, 103, 4.0
+r.add_rating 4, 104, 2.5
 
-r.add_person
-  id: 7
-  name: "Toby"
+r.add_rating 5, 100, 3.0
+r.add_rating 5, 101, 4.0
+r.add_rating 5, 102, 2.0
+r.add_rating 5, 103, 3.0
+r.add_rating 5, 104, 2.0
+r.add_rating 5, 105, 3.0
 
-r.add_item
-  id: 100
-  name: "Lady in the Water"
-  type: "movie"
+r.add_rating 6, 100, 3.0
+r.add_rating 6, 101, 4.0
+r.add_rating 6, 105, 3.0
+r.add_rating 6, 103, 5.0
+r.add_rating 6, 104, 3.5
 
-r.add_item
-  id: 101
-  name: "Snakes on a Plane"
-  type: "movie"
-
-r.add_item
-  id: 102
-  name: "Just My Luck"
-  type: "movie"
-
-r.add_item
-  id: 103
-  name: "Superman Returns"
-  type: "movie"
-
-r.add_item
-  id: 104
-  name: "You, Me and Dupree"
-  type: "movie"
-
-r.add_item
-  id: 105
-  name: "The Night Listener"
-  type: "movie"
-
-r.add_rating 1, 100,
-  rating: 2.5
-r.add_rating 1, 101,
-  rating: 3.5
-r.add_rating 1, 102,
-  rating: 3.0
-r.add_rating 1, 103,
-  rating: 3.5
-r.add_rating 1, 104,
-  rating: 2.5
-r.add_rating 1, 105,
-  rating: 3.0
-
-r.add_rating 2, 100,
-  rating: 3.0
-r.add_rating 2, 101,
-  rating: 3.5
-r.add_rating 2, 102,
-  rating: 1.5
-r.add_rating 2, 103,
-  rating: 5.0
-r.add_rating 2, 104,
-  rating: 3.5
-r.add_rating 2, 105,
-  rating: 3.0
-
-r.add_rating 3, 100,
-  rating: 2.5
-r.add_rating 3, 101,
-  rating: 3.0
-r.add_rating 3, 103,
-  rating: 3.5
-r.add_rating 3, 105,
-  rating:4.0
-
-r.add_rating 4, 101,
-  rating: 3.5
-r.add_rating 4, 102,
-  rating: 3.0
-r.add_rating 4, 105,
-  rating: 4.5
-r.add_rating 4, 103,
-  rating: 4
-r.add_rating 4, 104,
-  rating: 2.5
-
-r.add_rating 5, 100,
-  rating: 3.0
-r.add_rating 5, 101,
-  rating: 4.0
-r.add_rating 5, 102,
-  rating: 2.0
-r.add_rating 5, 103,
-  rating: 3.0
-r.add_rating 5, 104,
-  rating: 2.0
-r.add_rating 5, 105,
-  rating: 3.0
-
-r.add_rating 6, 100,
-  rating: 3.0
-r.add_rating 6, 101,
-  rating: 4.0
-r.add_rating 6, 105,
-  rating: 3.0
-r.add_rating 6, 103,
-  rating: 5.0
-r.add_rating 6, 104,
-  rating: 3.5
-
-r.add_rating 7, 101,
-  rating: 4.5
-r.add_rating 7, 104,
-  rating: 1.0
-r.add_rating 7, 103,
-  rating: 4.0
+r.add_rating 7, 101, 4.5
+r.add_rating 7, 104, 1.0
+r.add_rating 7, 103, 4.0
 
 console.log r.pearson("1", "2")
-console.log r.person_sim "7"
+console.log r.top_matches "7", 5, r.pearson
 console.log r.recommendations "7"
 
 flipper = r.flip()
-console.log flipper.person_sim "103"
+console.log flipper.top_matches "103", 5, r.pearson
+
+item_sims = r.similar_items 5, r.distance
+console.log item_sims
+
+console.log r.item_recommendations item_sims, '7'
