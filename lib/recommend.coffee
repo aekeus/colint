@@ -49,8 +49,8 @@ class Recommender
 
     psum = utils.sum (@ratings[p1][i] * @ratings[p2][i] for i in mutual)
 
-    num = psum - (sum1*sum2/n)
-    den = Math.sqrt( ( sum1sq - (sum1*sum1) / n ) * ( sum2sq - (sum2*sum2) / n ) )
+    num = psum - (sum1 * sum2 / n)
+    den = Math.sqrt( ( sum1sq - (sum1 * sum1) / n ) * ( sum2sq - (sum2 * sum2) / n ) )
 
     return 0 if den is 0
     num / den
@@ -64,7 +64,7 @@ class Recommender
   recommendations: (person_id, n = 5) ->
     totals = {}
     sim_sums = {}
-    for other_id, _ of @all_people() when other_id isnt person_id
+    for other_id in @all_people() when other_id isnt person_id
       sim = @pearson(person_id, other_id)
       if sim > 0
         for item_id, _ of @ratings[other_id]
