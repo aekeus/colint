@@ -101,10 +101,10 @@ class Recommender
           scores[item_id_2] += similarity * rating
           total_sim[item_id_2] =0 unless total_sim?[item_id_2]
           total_sim[item_id_2] += similarity
-          
+
     rankings = ([item, score / total_sim[item]] for item, score of scores)
 
-    rankings.sort (a, b) -> b[1] - a[1]
+    rankings.sort (a, b) -> b[1] > a[1]
     rankings
       
   # transpose the people and item ids and return a new recommender

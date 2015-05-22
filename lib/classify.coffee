@@ -31,14 +31,14 @@ splitters =
 
 class Classifier
 
-  # constructor(Function, Boolean) -> Void
+  # constructor(Function, Object) -> Void
   #
   # Build a classifier object
   constructor: (@splitter, @splitter_opts={}) ->
     @fc = {}
     @cc = {}
 
-  # incf() -> Void
+  # incf(String, String) -> Void
   #
   # Increment the number of times a feature appears in a document
   # within a category
@@ -49,7 +49,7 @@ class Classifier
       @fc[feature][category] = 0
     @fc[feature][category] += 1
 
-  # incc() -> Void
+  # incc(String) -> Void
   #
   # Increment the document count within a category
   incc: (category) ->
