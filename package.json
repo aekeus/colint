@@ -1,10 +1,10 @@
 {
   "name": "colint",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Collective intelligence library",
   "author": "Aubrey Keus <aekeus@keus.org>",
   "homepage": "https://github.com/aekeus/colint",
-  "bugs": "https://github.com/aekeus/verdb/colint",
+  "bugs": "https://github.com/aekeus/colint/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/aekeus/colint.git"
@@ -12,8 +12,7 @@
   "dependencies": {
     "coffee-script": "*",
     "optimist": "*",
-    "underscore": "*",
-    "xml2js": "*"
+    "underscore": "*"
   },
   "devDependencies": {
     "tap": "*"
@@ -24,7 +23,8 @@
     "bayes",
     "classification",
     "regression",
-    "recommendation"
+    "recommendation",
+    "decision tree"
   ],
   "engine": "node >= 10.0.*",
   "scripts": {
