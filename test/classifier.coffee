@@ -1,3 +1,5 @@
+#!/usr/bin/env coffee
+
 test = require('tap').test
 classify = require '../lib/classify'
 

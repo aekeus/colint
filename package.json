@@ -1,6 +1,6 @@
 {
   "name": "colint",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Collective intelligence library",
   "author": "Aubrey Keus <aekeus@keus.org>",
   "homepage": "https://github.com/aekeus/colint",
@@ -12,7 +12,8 @@
   "dependencies": {
     "coffee-script": "*",
     "optimist": "*",
-    "underscore": "*"
+    "underscore": "*",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "tap": "*"
@@ -28,6 +29,6 @@
   ],
   "engine": "node >= 10.0.*",
   "scripts": {
-    "test": "tap ./test"
+    "test": "tap test"
   }
 }
