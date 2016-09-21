@@ -1,4 +1,5 @@
 _ = require 'underscore'
+utils = require '../lib/utils'
 
 euclidean = (v1, v2) =>
   return null if v1.length isnt v2.length
@@ -41,9 +42,15 @@ jaccard = (v1, v2) =>
   return 0 if d is 0
   c / d
 
+ejaccard = (v1, v2) => utils.dot(v1, v2) / (Math.pow(utils.magnitude(v1), 2) + Math.pow(utils.magnitude(v2), 2) - utils.dot(v1, v2))
+
+cosine = (v1, v2) => utils.dot(v1, v2) / (utils.magnitude(v1) * utils.magnitude(v2))
+
 module.exports =
   euclidean: euclidean
   manhattan: manhattan
   supremum: supremum
   smc: smc
   jaccard: jaccard
+  cosine: cosine
+  ejaccard: ejaccard

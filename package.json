@@ -29,6 +29,8 @@
   ],
   "engine": "node >= 10.0.*",
   "scripts": {
-    "test": "tap test"
+    "clean": "rm -rf build/*",
+    "test": "tap test",
+    "build": "npm run clean && coffee -b -c -o build/ lib/"
   }
 }
