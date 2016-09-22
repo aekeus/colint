@@ -16,24 +16,24 @@ class TreeNode
 
   classify: (observation) =>
     return @results if @results
-    
+
     value = observation[@column_name]
     console.log @column_name + ":" + @value + " (" + value + ')'
-    
+
     if _.isNumber value
       branch = if value >= @value then @true_branch else @false_branch
     else
       branch = if value is @value then @true_branch else @false_branch
-      
+
     branch.classify observation
-      
+
 exports.TreeNode = TreeNode
-    
+
 #
 # divide(Array[Object], String, Any) -> [Array[Object], Array[Object]]
 #
 # Divide array into two sets based on the attribute name and value
-# 
+#
 exports.divide = divide = (rows, column_name, value) ->
   if _.isNumber value
     tester = (row) -> row[column_name] >= value
@@ -49,7 +49,7 @@ exports.divide = divide = (rows, column_name, value) ->
 # counts(Array[Object], String) -> Object
 #
 # return the count of unique values for a key in an array of objects
-# 
+#
 exports.counts = (rows, column_name) ->
   _.object ([k, v.length] for k, v of _.groupBy(rows,column_name))
 
@@ -57,7 +57,7 @@ exports.counts = (rows, column_name) ->
 # gini(Array[Object], String) -> Float
 #
 # calculate the gini impurity of a set of values
-# 
+#
 exports.gini = (rows, column_name) ->
   row_count = rows.length
   counts = exports.counts rows, column_name
@@ -76,7 +76,7 @@ log2 = (x) -> Math.log(x) / Math.log(2)
 # entropy(Array[Object], String) -> Float
 #
 # calculate the amount of entropy for an attribute in an array of objects
-# 
+#
 exports.entropy = (rows, column_name) ->
   counts = exports.counts rows, column_name
   ent = 0
@@ -87,9 +87,9 @@ exports.entropy = (rows, column_name) ->
 
 #
 # build_tree(Array[Object], String, Function(Array[Object], String)) -> TreeNode
-# 
+#
 # build a classification tree for a dataset on a specific column using an entropy scorer function
-# 
+#
 exports.build_tree = build_tree = (rows, column_name, scorer) ->
   return new TreeNode() if rows.length is 0
 
@@ -110,7 +110,7 @@ exports.build_tree = build_tree = (rows, column_name, scorer) ->
         best_gain = gain
         best_criteria = [k, column_value]
         best_sets = [set1, set2]
-        
+
   if best_gain > 0
     true_branch = build_tree best_sets[0], column_name, scorer
     false_branch = build_tree best_sets[1], column_name, scorer
