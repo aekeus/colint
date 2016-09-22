@@ -31,7 +31,7 @@ see /examples folder for a working classification, recommendation and decision t
 With [npm](https://npmjs.org) do:
 
 ```
-sudo npm install colint
+npm install colint
 ```
 
 # license
