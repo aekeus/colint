@@ -31,4 +31,6 @@ tap.test (t) =>
 
   t.equal Math.round(distance.ejaccard(v1, v2) * 1000), 116, 'ejaccard'
 
+  t.equal distance.sq(distance.euclidean)([0,0], [3,4]), 25, 'squared distance'
+
   t.end()

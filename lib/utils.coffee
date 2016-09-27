@@ -69,6 +69,11 @@ exports.vectorMean = (vectors) ->
   exports.vectorScalarMult exports.vectorSum(vectors), 1 / vectors.length
 
 #
+# sample(Array[Any], Number) -> Array[Any]
+#
+exports.sample = (items, count) -> _.shuffle(items)[0...count]
+
+#
 # zip(Array[Number], Array[Number]) -> Array[Array[Number, Number]]
 #
 exports.zip = zip = (v1, v2) -> ([v1[idx], v2[idx]] for v, idx in v1)

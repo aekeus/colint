@@ -46,6 +46,13 @@ ejaccard = (v1, v2) => utils.dot(v1, v2) / (Math.pow(utils.magnitude(v1), 2) + M
 
 cosine = (v1, v2) => utils.dot(v1, v2) / (utils.magnitude(v1) * utils.magnitude(v2))
 
+#
+# sq(Function(Array[Number], Array[Number])) -> Function(Array[Number], Array[Number])
+#
+# Return a function that squares its function arguments results
+#
+sq = (func) -> (v1, v2) -> Math.pow func(v1, v2), 2
+
 module.exports =
   euclidean: euclidean
   manhattan: manhattan
@@ -54,3 +61,4 @@ module.exports =
   jaccard: jaccard
   cosine: cosine
   ejaccard: ejaccard
+  sq: sq
