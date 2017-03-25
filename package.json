@@ -1,6 +1,6 @@
 {
   "name": "colint",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Collective intelligence library",
   "author": "Aubrey Keus <aekeus@keus.org>",
   "homepage": "https://github.com/aekeus/colint",
@@ -10,13 +10,13 @@
     "url": "https://github.com/aekeus/colint.git"
   },
   "dependencies": {
-    "coffee-script": "*",
     "optimist": "*",
     "pdfkit": "^0.8.0",
     "underscore": "*",
     "xml2js": "^0.4.17"
   },
   "devDependencies": {
+    "coffee-script": "*",
     "docco": "^0.7.0",
     "tap": "*"
   },
@@ -31,10 +31,12 @@
   ],
   "engine": "node >= 10.0.*",
   "scripts": {
-    "clean": "rm -rf build/* && rm -rf docs",
+    "clean": "rm -rf dist/* && rm -rf docs",
     "test": "tap test",
-    "build-js": "coffee -b -c -o build/ lib/",
+    "build-js": "coffee -b -c -o dist/ lib/",
     "build-docs": "docco -o docs lib/*.coffee",
-    "build-all": "npm run clean && npm run build-js && npm run build-docs"
+    "build-all": "npm run clean && npm run build-js",
+    "build-docs": "npm run build-docs",
+    "postinstall": "npm run build-all"
   }
 }
